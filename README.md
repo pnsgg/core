@@ -1,15 +1,16 @@
-# Elysia with Bun runtime
+# PNReST
 
-## Getting Started
-To get started with this template, simply paste this command into your terminal:
-```bash
-bun create elysia ./elysia-example
-```
+API REST de PNS. Interface avec la base de données PostgreSQL et l'API start.gg, utilisé pour les logiciels internes de PNS.
 
-## Development
-To start the development server run:
-```bash
-bun run dev
-```
+Énorme WIP, documentation à venir...
 
-Open http://localhost:3000/ with your browser to see the result.
+## Prérequis
+
+- [Bun](https://bun.com)
+- [PostgreSQL](https://www.postgresql.org/download)
+
+## Stack technique
+
+- Bun
+- Elysia
+- [Drizzle ORM](https://orm.drizzle.team/) et [Drizzle Kit](https://orm.drizzle.team/docs/kit-overview)
