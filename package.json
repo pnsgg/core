@@ -5,14 +5,15 @@
   "scripts": {
     "dev": "bun run --watch src/index.ts",
     "format": "prettier . --write",
-    "db:push": "drizzle-kit push",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate"
+    "db:push": "bun --bun drizzle-kit push",
+    "db:generate": "bun --bun drizzle-kit generate",
+    "db:migrate": "bun --bun drizzle-kit migrate"
   },
   "dependencies": {
     "drizzle-orm": "^0.44.7",
     "drizzle-typebox": "^0.3.3",
-    "elysia": "latest"
+    "elysia": "latest",
+    "envalid": "^8.1.1"
   },
   "devDependencies": {
     "bun-types": "latest",
