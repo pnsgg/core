@@ -1,9 +1,7 @@
 import { defineConfig } from 'drizzle-kit';
 
 if (!process.env.DATABASE_URL) {
-  throw new Error(
-    "Pas de variable d'environnement DATABASE_URL trouvée. Lis le README !",
-  );
+  throw new Error("Pas de variable d'environnement DATABASE_URL trouvée. Lis le README !");
 }
 
 export default defineConfig({
