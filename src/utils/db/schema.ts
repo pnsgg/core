@@ -63,7 +63,9 @@ export const tournamentsTable = pgTable('tournaments', {
   slots: integer().notNull(),
   bracketType: text({
     enum: ['ROUND-ROBIN', 'SIMPLE', 'DOUBLE', 'MATCHMAKING', 'OTHER'],
-  }).default('DOUBLE'),
+  })
+    .default('DOUBLE')
+    .notNull(),
 });
 
 export const tournamentsRelations = relations(tournamentsTable, ({ one }) => ({
@@ -112,63 +114,101 @@ export const productsTable = pgTable('products', {
   price: numeric({ precision: 12, scale: 2 }).notNull(),
   category: productCategories().notNull(),
   quantity: numeric().notNull(),
-  unitOfMeasurement: unitsOfMeasurement().default('UNIT'),
-  isActive: boolean().default(true),
+  unitOfMeasurement: unitsOfMeasurement().default('UNIT').notNull(),
+  isOnSale: boolean().default(true).notNull(),
   location: text(),
 });
 
-export const paymentMethods = pgEnum('payment_methods', [
-  'CASH',
-  'PAYPAL',
-  'VISA',
-  'MASTERCARD',
-  'CB',
-]);
+export const productsRelations = relations(productsTable, ({ many }) => ({
+  sales: many(productSalesTable),
+  stockMovements: many(stockMovementsTable),
+}));
+
+export const CardPaymentMethods = ['VISA', 'MASTERCARD', 'CB'];
+export const OtherPaymentMethods = ['CASH', 'PAYPAL'];
+
+export const PaymentMethods = [...CardPaymentMethods, ...OtherPaymentMethods] as [
+  string,
+  ...string[],
+];
+
+export const paymentMethods = pgEnum('payment_methods', PaymentMethods);
 
 /**
- * Table des transactions de produits (une transaction par produit)
+ * Table des ventes.
+ * Est considérée une vente l'achat d'un client d'un ou plusieurs produits.
+ * Une vente est comme un ticket de caisse.
+ * @see productSalesTable
  */
-export const transactionsTable = pgTable('transactions', {
+export const salesTable = pgTable('sales', {
   id: uuid().defaultRandom().primaryKey(),
-  createdAt: timestamp().defaultNow(),
-  productId: uuid().references(() => productsTable.id, { onDelete: 'cascade' }),
-  price: numeric({ precision: 12, scale: 2 }).notNull(),
-  quantity: numeric().notNull(),
+  createdAt: timestamp().defaultNow().notNull(),
   paymentMethod: paymentMethods().notNull(),
   stancerId: text(), // ID de référence au paiement sur Stancer, si applicable
   eventId: uuid().references(() => eventsTable.id, { onDelete: 'set null' }),
+  stockMovementId: uuid().references(() => stockMovementsTable.id, { onDelete: 'cascade' }),
 });
 
-export const transactionsRelations = relations(transactionsTable, ({ one, many }) => ({
-  product: one(productsTable, {
-    fields: [transactionsTable.productId],
-    references: [productsTable.id],
-  }),
+export const salesRelations = relations(salesTable, ({ one, many }) => ({
+  products: many(productSalesTable),
   event: one(eventsTable, {
-    fields: [transactionsTable.eventId],
+    fields: [salesTable.eventId],
     references: [eventsTable.id],
+  }),
+  stockMovement: one(stockMovementsTable, {
+    fields: [salesTable.stockMovementId],
+    references: [stockMovementsTable.id],
+  }),
+}));
+
+/**
+ * Table des ventes d'un produit pour une vente.
+ * Une ligne de cette table serait équivalente à une ligne sur un ticket de caisse.
+ * @see salesTable
+ */
+export const productSalesTable = pgTable('product_sales', {
+  id: uuid().defaultRandom().primaryKey(),
+  price: numeric({ precision: 12, scale: 2 }).notNull(),
+  quantity: numeric().notNull(),
+  productId: uuid()
+    .references(() => productsTable.id, { onDelete: 'cascade' })
+    .notNull(),
+  saleId: uuid()
+    .references(() => salesTable.id, { onDelete: 'cascade' })
+    .notNull(),
+});
+
+export const productSalesRelations = relations(productSalesTable, ({ one }) => ({
+  sale: one(salesTable, {
+    fields: [productSalesTable.saleId],
+    references: [salesTable.id],
+  }),
+  product: one(productsTable, {
+    fields: [productSalesTable.productId],
+    references: [productsTable.id],
   }),
 }));
 
 export const stockMovementTypes = pgEnum('stock_movement_types', [
-  'IN',
-  'OUT',
-  'ADJUSTMENT',
-  'SALE',
-  'RETURN',
+  'BUY', // Achat
+  'SALE', // Vente
+  'LOSS', // Perte
+  'RETURN', // Remboursement
 ]);
 
 /**
- * Table des mouvements d'inventaire (ajouts, retraits, ventes)
+ * Table des mouvements d'inventaire (achat, remboursement, perte...).
+ * Pour une vente, considérer une ligne sur cette table comme le bilan pour un événement donné
  */
 export const stockMovementsTable = pgTable('stock_movements', {
   id: uuid().defaultRandom().primaryKey(),
-  createdAt: timestamp().defaultNow(),
-  productId: uuid().references(() => productsTable.id, { onDelete: 'cascade' }),
+  createdAt: timestamp().defaultNow().notNull(),
+  productId: uuid()
+    .references(() => productsTable.id, { onDelete: 'cascade' })
+    .notNull(),
   quantity: numeric().notNull(),
   price: numeric({ precision: 12, scale: 2 }).notNull(),
-  fireflyId: text(), // ID du journal des opérations Firefly III
-  transactionId: uuid().references(() => transactionsTable.id, { onDelete: 'set null' }),
+  fireflyId: text(), // ID du journal des opérations Firefly III, non nul dans le cadre d'une vente, d'un achat ou d'un remboursement
   eventId: uuid().references(() => eventsTable.id, { onDelete: 'set null' }),
 });
 
@@ -177,10 +217,7 @@ export const stockMovementsRelations = relations(stockMovementsTable, ({ one, ma
     fields: [stockMovementsTable.productId],
     references: [productsTable.id],
   }),
-  transaction: one(transactionsTable, {
-    fields: [stockMovementsTable.transactionId],
-    references: [transactionsTable.id],
-  }),
+  sales: many(salesTable),
   event: one(eventsTable, {
     fields: [stockMovementsTable.eventId],
     references: [eventsTable.id],
