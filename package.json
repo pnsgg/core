@@ -10,6 +10,7 @@
     "db:migrate": "bun --bun drizzle-kit migrate"
   },
   "dependencies": {
+    "@elysiajs/openapi": "^1.4.11",
     "drizzle-orm": "^0.44.7",
     "drizzle-typebox": "^0.3.3",
     "elysia": "latest",
