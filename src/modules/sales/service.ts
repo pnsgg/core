@@ -17,9 +17,10 @@ export abstract class SalesService {
   }: {
     products: {
       price: string;
+      quantity: string;
     }[];
   }) {
-    return products.reduce((acc, p) => acc + parseFloat(p.price), 0);
+    return products.reduce((acc, p) => acc + parseFloat(p.price) * parseFloat(p.quantity), 0);
   }
 
   static async getSales() {
