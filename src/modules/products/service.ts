@@ -27,7 +27,7 @@ export abstract class ProductsService {
     return status(201, newProduct);
   }
 
-  static async modifyProduct(productId: string, data: ProductsModel.UpdateProductBody) {
+  static async modifyProduct(productId: string, data: ProductsModel.ModifyProductBody) {
     const [updatedProduct] = await db
       .update(productsTable)
       .set(data)

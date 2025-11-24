@@ -97,12 +97,14 @@ export const feeDiscountsRelations = relations(feeDiscountsTable, ({ one }) => (
 /**
  * Énumération des catégories de produits (merch, boissons ou nourriture)
  */
-export const productCategories = pgEnum('product_categories', ['MERCHANDIZING', 'DRINKS', 'FOOD']);
+export const ProductCategories = ['MERCHANDIZING', 'DRINKS', 'FOOD'] as [string, ...string[]];
+export const productCategories = pgEnum('product_categories', ProductCategories);
 
 /**
  * Énumération des unités de mesure possibles pour un produit
  */
-export const unitsOfMeasurement = pgEnum('units_of_measurement', ['UNIT', 'KILOGRAM', 'LITER']);
+export const UnitsOfMeasurement = ['UNIT', 'KILOGRAM', 'LITER'] as [string, ...string[]];
+export const unitsOfMeasurement = pgEnum('units_of_measurement', UnitsOfMeasurement);
 
 /**
  * Table des produits (une ligne = un ensemble du même produit, pas une unité de produit)
@@ -170,6 +172,7 @@ export const productSalesTable = pgTable('product_sales', {
   id: uuid().defaultRandom().primaryKey(),
   price: numeric({ precision: 12, scale: 2 }).notNull(),
   quantity: numeric().notNull(),
+  index: integer().notNull(),
   productId: uuid()
     .references(() => productsTable.id, { onDelete: 'cascade' })
     .notNull(),

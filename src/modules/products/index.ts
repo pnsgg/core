@@ -1,5 +1,5 @@
 import { UuidParamsObject } from '@/utils/type-schema';
-import Elysia, { t } from 'elysia';
+import Elysia from 'elysia';
 import { ProductsModel } from './model';
 import { ProductsService } from './service';
 
@@ -21,7 +21,7 @@ export const productsModule = new Elysia({ prefix: '/products' })
   // Modifie un produit
   .patch('/:id', async ({ params, body }) => ProductsService.modifyProduct(params.id, body), {
     params: UuidParamsObject,
-    body: t.Omit(ProductsModel.updateProductsBody, ['id']),
+    body: ProductsModel.modifyProductsBody,
   })
   // DELETE /products/:id
   // Supprime un produit

@@ -1,21 +1,22 @@
-import { productsTable } from '@/utils/db/schema';
-import { FloatToString } from '@/utils/type-schema';
-import { createInsertSchema, createUpdateSchema } from 'drizzle-typebox';
+import { ProductCategories, UnitsOfMeasurement } from '@/utils/db/schema';
+import { createModifySchema, FloatToString, NoDefaultEnum } from '@/utils/type-schema';
 import { t } from 'elysia';
 
 export namespace ProductsModel {
-  export const createProductsBody = createInsertSchema(productsTable, {
-    quantity: FloatToString({ exclusiveMinimum: 0.0 }),
+  export const createProductsBody = t.Object({
+    name: t.String(),
+    allergens: t.Optional(t.String()),
     price: FloatToString({ exclusiveMinimum: 0.0 }),
+    category: NoDefaultEnum(ProductCategories),
+    quantity: FloatToString({ exclusiveMinimum: 0.0 }),
+    unitOfMeasurement: NoDefaultEnum(UnitsOfMeasurement),
+    isOnSale: t.Boolean(),
+    location: t.Optional(t.String()),
   });
 
   export type CreateProductBody = typeof createProductsBody.static;
 
-  export const updateProductsBody = createUpdateSchema(productsTable, {
-    id: t.Never(),
-    quantity: t.Optional(FloatToString({ exclusiveMinimum: 0.0 })),
-    price: t.Optional(FloatToString({ exclusiveMinimum: 0.0 })),
-  });
+  export const modifyProductsBody = createModifySchema(createProductsBody);
 
-  export type UpdateProductBody = Omit<typeof updateProductsBody.static, 'id'>;
+  export type ModifyProductBody = typeof modifyProductsBody.static;
 }
