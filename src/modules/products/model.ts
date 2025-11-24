@@ -10,7 +10,7 @@ export namespace ProductsModel {
     category: NoDefaultEnum(ProductCategories),
     quantity: FloatToString({ exclusiveMinimum: 0.0 }),
     unitOfMeasurement: NoDefaultEnum(UnitsOfMeasurement),
-    isOnSale: t.Boolean(),
+    isOnSale: t.Optional(t.Boolean({ default: true })),
     location: t.Optional(t.String()),
   });
 
