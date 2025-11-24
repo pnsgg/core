@@ -1,5 +1,5 @@
 import { db } from '@/utils/db';
-import { productsTable } from '@/utils/db/schema';
+import { productSalesTable, productsTable, salesTable } from '@/utils/db/schema';
 import { eq } from 'drizzle-orm';
 import { status } from 'elysia';
 import { ProductsModel } from './model';
@@ -52,5 +52,32 @@ export abstract class ProductsService {
     }
 
     return status(204);
+  }
+
+  static async getProductSales(productId: string) {
+    const productSales = await db
+      .select({
+        id: salesTable.id,
+        createdAt: salesTable.createdAt,
+        paymentMethod: salesTable.paymentMethod,
+        stancerId: salesTable.stancerId,
+        eventId: salesTable.eventId,
+        stockMovementId: salesTable.stockMovementId,
+        product: {
+          price: productSalesTable.price,
+          quantity: productSalesTable.quantity,
+          index: productSalesTable.index,
+          productId: productSalesTable.productId,
+        },
+      })
+      .from(salesTable)
+      .leftJoin(productSalesTable, eq(salesTable.id, productSalesTable.saleId))
+      .where(eq(productSalesTable.productId, productId));
+
+    if (!productSales) {
+      throw status(404);
+    }
+
+    return productSales;
   }
 }

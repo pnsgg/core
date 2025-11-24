@@ -27,4 +27,9 @@ export const productsModule = new Elysia({ prefix: '/products' })
   // Supprime un produit
   .delete('/:id', async ({ params }) => ProductsService.deleteProduct(params.id), {
     params: UuidParamsObject,
+  })
+  // GET /products/:id/sales
+  // Récupère les ventes d'un produit
+  .get('/:id/sales', async ({ params }) => ProductsService.getProductSales(params.id), {
+    params: UuidParamsObject,
   });
