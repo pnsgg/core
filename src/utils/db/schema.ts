@@ -148,7 +148,7 @@ export const salesTable = pgTable('sales', {
   paymentMethod: paymentMethods().notNull(),
   stancerId: text(), // ID de référence au paiement sur Stancer, si applicable
   eventId: uuid().references(() => eventsTable.id, { onDelete: 'set null' }),
-  stockMovementId: uuid().references(() => stockMovementsTable.id, { onDelete: 'cascade' }),
+  stockMovementId: uuid().references(() => stockMovementsTable.id, { onDelete: 'set null' }),
 });
 
 export const salesRelations = relations(salesTable, ({ one, many }) => ({

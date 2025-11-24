@@ -1,5 +1,5 @@
 import { PaymentMethods } from '@/utils/db/schema';
-import { FloatToString, Uuid } from '@/utils/type-schema';
+import { createModifySchema, FloatToString, NoDefaultEnum, Uuid } from '@/utils/type-schema';
 import { t } from 'elysia';
 
 export namespace SalesModel {
@@ -9,8 +9,14 @@ export namespace SalesModel {
     quantity: FloatToString({ minimum: 1 }),
   });
 
+  export type CreateProductSaleBody = typeof createProductSalesBody.static;
+
+  export const modifyProductSalesBody = createProductSalesBody;
+
+  export type ModifyProductSaleBody = typeof modifyProductSalesBody.static;
+
   export const createSalesBody = t.Object({
-    paymentMethod: t.UnionEnum(PaymentMethods),
+    paymentMethod: NoDefaultEnum(PaymentMethods),
     stancerId: t.Optional(t.String()),
     eventId: Uuid(),
     // Une liste d'identifiant des produits vendus
@@ -18,4 +24,10 @@ export namespace SalesModel {
   });
 
   export type CreateSaleBody = typeof createSalesBody.static;
+
+  export const modifySalesBody = createModifySchema(createSalesBody, {
+    omit: ['products', 'stancerId', 'eventId'],
+  });
+
+  export type ModifySaleBody = typeof modifySalesBody.static;
 }
