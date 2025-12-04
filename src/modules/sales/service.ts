@@ -7,7 +7,7 @@ import {
 } from '@/utils/db/schema';
 import { fireflyFetch } from '@/utils/firefly';
 import { FireflyIII } from '@/utils/firefly/types';
-import { eq, inArray } from 'drizzle-orm';
+import { and, eq, inArray } from 'drizzle-orm';
 import { status } from 'elysia';
 import { SalesModel } from './model';
 
@@ -168,6 +168,21 @@ export abstract class SalesService {
       .returning({ id: salesTable.id });
 
     if (!deletedSale) {
+      throw status(404);
+    }
+
+    return status(204);
+  }
+
+  static async deleteProductSale(saleId: string, productSaleIndex: number) {
+    const [deletedProductSale] = await db
+      .delete(productSalesTable)
+      .where(
+        and(eq(productSalesTable.saleId, saleId), eq(productSalesTable.index, productSaleIndex)),
+      )
+      .returning({ id: productSalesTable.id });
+
+    if (!deletedProductSale) {
       throw status(404);
     }
 

@@ -1,5 +1,5 @@
-import { UuidParamsObject } from '@/utils/type-schema';
-import Elysia from 'elysia';
+import { Uuid, UuidParamsObject } from '@/utils/type-schema';
+import Elysia, { t } from 'elysia';
 import { SalesModel } from './model';
 import { SalesService } from './service';
 
@@ -28,4 +28,16 @@ export const salesModule = new Elysia({ prefix: '/sales' })
   // Ne supprime pas le mouvement d'inventaire ou la transaction Firefly III
   .delete('/:id', async ({ params }) => await SalesService.deleteSale(params.id), {
     params: UuidParamsObject,
-  });
+  })
+  // DELETE /sales/:id/products/:index
+  // Supprime un produit d'une vente
+  .delete(
+    '/:id/products/:index',
+    async ({ params }) => await SalesService.deleteProductSale(params.id, params.index),
+    {
+      params: t.Object({
+        id: Uuid(),
+        index: t.Numeric(),
+      }),
+    },
+  );
