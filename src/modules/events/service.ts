@@ -61,7 +61,31 @@ export abstract class EventsService {
     return status(201, { ...createdEvent, tournaments: createdTournaments });
   }
 
-  static async modifyEvent(id: string) {
-    return {};
+  static async modifyEvent(id: string, data: EventsModel.ModifyEventBody) {
+    if (data.endsAt.getTime() <= data.startsAt.getTime()) {
+      throw status(
+        400,
+        "La date de fin de l'événement ne peut pas être antérieure à la date de début.",
+      );
+    }
+
+    const series = await SeriesService.getSeries(data.seriesId);
+    if (!series) {
+      throw status(404, 'Série non trouvée.');
+    }
+
+    const [updatedEvent] = await db
+      .update(eventsTable)
+      .set(data)
+      .where(eq(eventsTable.id, id))
+      .returning({
+        id: eventsTable.id,
+      });
+
+    if (!updatedEvent) {
+      throw status(404);
+    }
+
+    return updatedEvent;
   }
 }

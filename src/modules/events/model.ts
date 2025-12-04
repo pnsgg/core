@@ -48,4 +48,24 @@ export namespace EventsModel {
   });
 
   export type CreateEventBody = typeof createEventsBody.static;
+
+  export const modifyEventsBody = t.Object({
+    name: t.String(),
+    startsAt: t.Date(),
+    endsAt: t.Date(),
+    seriesId: t.String({
+      format: 'uuid',
+    }),
+    shortDescription: t.Optional(t.String()),
+    longDescription: t.Optional(t.String()),
+    locationText: t.String(),
+    totalSlots: t.Number({
+      minimum: 2,
+    }),
+    maximumParticipationFee: t.Number({
+      minimum: 0,
+    }),
+  });
+
+  export type ModifyEventBody = typeof modifyEventsBody.static;
 }
