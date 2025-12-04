@@ -11,7 +11,9 @@ export abstract class EventsService {
   }
 
   static async getEvent(id: string) {
-    return {};
+    return await db.query.eventsTable.findFirst({
+      where: eq(eventsTable.id, id),
+    });
   }
 
   static async createEvent(data: EventsModel.CreateEventBody) {
