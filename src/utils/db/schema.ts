@@ -1,5 +1,5 @@
 import { relations } from 'drizzle-orm';
-import { integer, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+import { integer, pgEnum, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
 
 /**
  * Table des séries d'événements
@@ -42,6 +42,18 @@ export const eventsRelations = relations(eventsTable, ({ one, many }) => ({
 }));
 
 /**
+ * Énumération des catégories de produits (merch, boissons ou nourriture)
+ */
+export const TournamentBracketTypes = [
+  'ROUND-ROBIN',
+  'SIMPLE',
+  'DOUBLE',
+  'MATCHMAKING',
+  'OTHER',
+] as [string, ...string[]];
+export const tournamentBracketTypes = pgEnum('tournament_bracket_types', TournamentBracketTypes);
+
+/**
  * Table des tournois partiels (appelés events sur l'API start.gg)
  */
 export const tournamentsTable = pgTable('tournaments', {
@@ -52,9 +64,7 @@ export const tournamentsTable = pgTable('tournaments', {
     .references(() => eventsTable.id, { onDelete: 'cascade' })
     .notNull(),
   slots: integer().notNull(),
-  bracketType: text({
-    enum: ['ROUND-ROBIN', 'SIMPLE', 'DOUBLE', 'MATCHMAKING', 'OTHER'],
-  }).default('DOUBLE'),
+  bracketType: tournamentBracketTypes().default('DOUBLE'),
 });
 
 export const tournamentsRelations = relations(tournamentsTable, ({ one }) => ({
