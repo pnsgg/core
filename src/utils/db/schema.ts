@@ -1,5 +1,20 @@
 import { relations } from 'drizzle-orm';
-import { integer, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+import { integer, pgEnum, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+
+/**
+ * Énumération des rôles attribuables à un utilisateur
+ */
+export const UserRoles = ['seller', 'TO'] as [string, ...string[]];
+export const userRoles = pgEnum('user_roles', UserRoles);
+
+/**
+ * Tables des utilisateurs
+ */
+export const usersTable = pgTable('users', {
+  id: uuid().defaultRandom().primaryKey(),
+  name: text().notNull().unique(),
+  role: userRoles().notNull(),
+});
 
 /**
  * Table des séries d'événements
