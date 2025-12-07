@@ -89,34 +89,34 @@ export abstract class EventsService {
     return updatedEvent;
   }
 
-  static async modifyTournament(id: string, tid: string, data: EventsModel.ModifyTournamentBody) {
+  static async modifyEventTournament(
+    eventId: string,
+    tournamentId: string,
+    data: EventsModel.ModifyTournamentBody,
+  ) {
     const event = await db.query.eventsTable.findFirst({
-      where: eq(eventsTable.id, id),
+      where: eq(eventsTable.id, eventId),
       with: {
         tournaments: {
-          where: eq(tournamentsTable.id, tid),
+          where: eq(tournamentsTable.id, tournamentId),
         },
       },
     });
 
     if (!event) {
-      throw status(404, 'Événement non trouvé');
+      throw status(404, 'Événement non trouvé.');
     }
-    if (!event.tournaments) {
-      throw status(404, 'Tournoi non trouvé pour cette événement');
+    if (!event.tournaments.length) {
+      throw status(404, 'Tournoi non trouvé pour cet événement.');
     }
 
     const [updatedTournament] = await db
       .update(tournamentsTable)
       .set(data)
-      .where(and(eq(tournamentsTable.id, tid), eq(tournamentsTable.eventId, id)))
+      .where(and(eq(tournamentsTable.id, tournamentId), eq(tournamentsTable.eventId, eventId)))
       .returning({
         id: tournamentsTable.id,
       });
-
-    if (!updatedTournament) {
-      throw status(404);
-    }
 
     return updatedTournament;
   }

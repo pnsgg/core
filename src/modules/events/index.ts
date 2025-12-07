@@ -25,7 +25,7 @@ export const eventsModule = new Elysia({ prefix: '/events' })
   // PATCH /events/:id/tournaments/:id
   .patch(
     '/:id/tournaments/:tid',
-    async ({ params, body }) => EventsService.modifyTournament(params.id, params.tid, body),
+    async ({ params, body }) => EventsService.modifyEventTournament(params.id, params.tid, body),
     {
       // params: UuidParamsObject,
       body: EventsModel.modifyEventsBody,
