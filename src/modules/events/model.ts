@@ -68,4 +68,20 @@ export namespace EventsModel {
   });
 
   export type ModifyEventBody = typeof modifyEventsBody.static;
+
+  export const modifyTournamentsBody = t.Object({
+    name: t.Optional(t.String()),
+    slots: t.Optional(
+      t.Number({
+        minimum: 2,
+      }),
+    ),
+    bracketType: t.Optional(
+      t.UnionEnum(TournamentBracketTypes, {
+        default: undefined,
+      }),
+    ),
+  });
+
+  export type ModifyTournamentBody = typeof modifyTournamentsBody.static;
 }
