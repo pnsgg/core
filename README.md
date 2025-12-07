@@ -1,16 +1,19 @@
-# PNReST
+![PNS CORE - Suite logicielle de PNS](.assets/readme-banner.png)
 
-API REST de PNS. Interface avec la base de données PostgreSQL et l'API start.gg, utilisé pour les logiciels internes de PNS.
+<center>
+<h1>PNS Core</h1>
+<p>Suite logicielle de PNS</p>
+</center>
 
-Énorme WIP, documentation à venir...
+Ce monorepo abrite les différents logiciels de PNS, dont :
 
-## Prérequis
+- 🔌 [backend](./apps/backend/) : une API REST pour tous les logiciels
+- 🌐 [website](./apps/website/) : le site web de PNS ([pns.gg ↗️](https://pns.gg))
+- 🎫 [erpns](./apps/erpns/) : le logiciel de gestion événementielle : communication, stocks, etc.
 
-- [Bun](https://bun.com)
-- [PostgreSQL](https://www.postgresql.org/download)
+ainsi que des paquets internes :
 
-## Stack technique
+- [@pns/api-client](./packages/api-client/) : export du client typesafe Elysia Treaty du backend
 
-- Bun
-- Elysia
-- [Drizzle ORM](https://orm.drizzle.team/) et [Drizzle Kit](https://orm.drizzle.team/docs/kit-overview)
+> [!WARNING]
+> La documentation est encore très rudimentaire. Des [Pull Requests](https://github.com/pnsgg/core/pulls) sont les bienvenues !
