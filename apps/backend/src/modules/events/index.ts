@@ -13,9 +13,7 @@ export const eventsModule = new Elysia({ prefix: '/events' })
   })
   // GET /events/:id
   // Récupère un événement
-  .get('/:id', async ({ params }) => EventsService.getEvent(params.id), {
-    // params: UuidParamsObject,
-  })
+  .get('/:id', async ({ params }) => EventsService.getEvent(params.id))
   // PATCH /events/:id
   // Modifie un événement
   .patch('/:id', async ({ params, body }) => EventsService.modifyEvent(params.id, body), {
