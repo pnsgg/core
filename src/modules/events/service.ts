@@ -1,6 +1,6 @@
 import { db } from '@/utils/db';
 import { eventsTable, tournamentsTable } from '@/utils/db/schema';
-import { eq, getTableColumns } from 'drizzle-orm';
+import { and, eq, getTableColumns } from 'drizzle-orm';
 import { status } from 'elysia';
 import { SeriesService } from '../series/service';
 import { EventsModel } from './model';
@@ -87,5 +87,37 @@ export abstract class EventsService {
     }
 
     return updatedEvent;
+  }
+
+  static async modifyEventTournament(
+    eventId: string,
+    tournamentId: string,
+    data: EventsModel.ModifyTournamentBody,
+  ) {
+    const event = await db.query.eventsTable.findFirst({
+      where: eq(eventsTable.id, eventId),
+      with: {
+        tournaments: {
+          where: eq(tournamentsTable.id, tournamentId),
+        },
+      },
+    });
+
+    if (!event) {
+      throw status(404, 'Événement non trouvé.');
+    }
+    if (!event.tournaments.length) {
+      throw status(404, 'Tournoi non trouvé pour cet événement.');
+    }
+
+    const [updatedTournament] = await db
+      .update(tournamentsTable)
+      .set(data)
+      .where(and(eq(tournamentsTable.id, tournamentId), eq(tournamentsTable.eventId, eventId)))
+      .returning({
+        id: tournamentsTable.id,
+      });
+
+    return updatedTournament;
   }
 }
