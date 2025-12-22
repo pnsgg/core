@@ -15,6 +15,13 @@
       "when": 1763603257414,
       "tag": "0001_demonic_exiles",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1766396510304,
+      "tag": "0002_damp_spyke",
+      "breakpoints": true
     }
   ]
 }

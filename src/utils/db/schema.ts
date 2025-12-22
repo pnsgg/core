@@ -200,12 +200,14 @@ export const productSalesRelations = relations(productSalesTable, ({ one }) => (
   }),
 }));
 
-export const stockMovementTypes = pgEnum('stock_movement_types', [
+export const StockMovementTypes = [
   'BUY', // Achat
   'SALE', // Vente
   'LOSS', // Perte
   'RETURN', // Remboursement
-]);
+] as [string, ...string[]];
+
+export const stockMovementTypes = pgEnum('stock_movement_types', StockMovementTypes);
 
 /**
  * Table des mouvements d'inventaire (achat, remboursement, perte...).
@@ -219,6 +221,7 @@ export const stockMovementsTable = pgTable('stock_movements', {
     .notNull(),
   quantity: numeric().notNull(),
   price: numeric({ precision: 12, scale: 2 }).notNull(),
+  type: stockMovementTypes().notNull(),
   fireflyId: text(), // ID du journal des opérations Firefly III, non nul dans le cadre d'une vente, d'un achat ou d'un remboursement
   eventId: uuid().references(() => eventsTable.id, { onDelete: 'set null' }),
 });
