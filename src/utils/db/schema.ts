@@ -212,13 +212,12 @@ export const stockMovementTypes = pgEnum('stock_movement_types', StockMovementTy
 /**
  * Table des mouvements d'inventaire (achat, remboursement, perte...).
  * Pour une vente, considérer une ligne sur cette table comme le bilan pour un événement donné
+ * Pour un remboursement ou un achat, le produit est forcément défini
  */
 export const stockMovementsTable = pgTable('stock_movements', {
   id: uuid().defaultRandom().primaryKey(),
   createdAt: timestamp().defaultNow().notNull(),
-  productId: uuid()
-    .references(() => productsTable.id, { onDelete: 'cascade' })
-    .notNull(),
+  productId: uuid().references(() => productsTable.id, { onDelete: 'cascade' }),
   quantity: numeric().notNull(),
   price: numeric({ precision: 12, scale: 2 }).notNull(),
   type: stockMovementTypes().notNull(),
