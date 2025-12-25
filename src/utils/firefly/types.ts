@@ -11,9 +11,11 @@ export namespace FireflyIII {
     currency_symbol: '€';
     currency_decimal_places: 2;
     amount: string;
-    dscription: string;
+    description: string;
+    source_id: string;
     source_name: string;
     source_type: string;
+    destination_id: string;
     destination_name: string;
     destination_type: string;
     category_name: string | null;
@@ -34,5 +36,13 @@ export namespace FireflyIII {
         self: string;
       };
     }[];
+  }
+
+  export interface APIPostTransaction {
+    error_if_duplicate_hash: boolean;
+    apply_rules: boolean;
+    fire_webhooks: boolean;
+    group_title: string | null;
+    transactions: PartialTransaction[];
   }
 }
