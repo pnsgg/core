@@ -1,0 +1,161 @@
+---
+import CalendarFilled from '@/assets/icons/CalendarFilled.svg';
+import GroupFilled from '@/assets/icons/GroupFilled.svg';
+import RoadMapFilled from '@/assets/icons/RoadMapFilled.svg';
+import TimeFilled from '@/assets/icons/TimeFilled.svg';
+import LogoBloomBagarre from '@/assets/logos/BloomBagarre.svg';
+import Button from '@/components/Button.astro';
+---
+
+<section id="bloombagarre">
+  <div class="a-propos">
+    <LogoBloomBagarre />
+
+    <h2>
+      L'événement Smash Bros. et Mario Kart de l'Université de Toulouse, organisé un vendredi sur
+      deux par PNS.
+    </h2>
+  </div>
+
+  <div class="infos-inscriptions">
+    <ul>
+      <li>
+        <CalendarFilled />
+
+        <div class="valeurs">
+          <span class="libelle"> Date </span>
+
+          <span class="valeur"> Vendredi 16 janvier </span>
+        </div>
+      </li>
+      <li>
+        <TimeFilled />
+
+        <div class="valeurs">
+          <span class="libelle"> Horaires </span>
+
+          <span class="valeur"> 18h — 23h </span>
+        </div>
+      </li>
+      <li>
+        <RoadMapFilled />
+
+        <div class="valeurs">
+          <span class="libelle"> Lieu </span>
+
+          <span class="valeur"> Université de Toulouse </span>
+        </div>
+      </li>
+      <li>
+        <GroupFilled />
+
+        <div class="valeurs">
+          <span class="libelle"> Public </span>
+
+          <span class="valeur">
+            Tous publics (étudiants et extérieur), débutants à niveaux confirmés
+          </span>
+        </div>
+      </li>
+    </ul>
+
+    <div class="boutons">
+      <!-- href="https://start.gg/bloombagarre" -->
+      <Button variante="primaire" aria-disabled="true">
+        <!-- Billetterie et informations -->
+        Billetterie (à venir)
+      </Button>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  #bloombagarre {
+    flex-direction: row;
+    gap: 3rem;
+
+    font-family: 'Cabinet Grotesk', var(--polices-defaut);
+
+    @media (max-width: 870px) {
+      flex-direction: column;
+    }
+
+    .a-propos {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      @media (max-width: 870px) {
+        align-items: center;
+      }
+
+      svg {
+        max-width: 400px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        max-width: 30ch;
+        font-weight: 500;
+        text-wrap: balance;
+
+        @media (max-width: 870px) {
+          text-align: center;
+          max-width: none;
+        }
+      }
+    }
+
+    .infos-inscriptions {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      flex: 1;
+
+      ul {
+        display: contents;
+
+        li {
+          display: flex;
+          gap: 1rem;
+          text-wrap: balance;
+
+          @media (max-width: 870px) {
+            align-items: center;
+          }
+
+          .valeurs {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+
+            .libelle {
+              font-size: 1.25rem;
+              font-weight: 700;
+
+              @media (max-width: 870px) {
+                display: none;
+              }
+            }
+
+            .valeur {
+              font-size: 1.125rem;
+
+              @media (max-width: 870px) {
+                font-size: 1.375rem;
+                font-weight: 700;
+              }
+            }
+          }
+        }
+      }
+
+      .boutons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+    }
+  }
+</style>
