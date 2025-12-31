@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package.json bun.lock tsconfig.json ./
 COPY apps/backend/package.json ./apps/backend/
 COPY packages/api-client/package.json ./packages/api-client/
-RUN bun install --frozen-lockfile --production
+RUN bun install
 
 FROM install AS builder
 WORKDIR /app

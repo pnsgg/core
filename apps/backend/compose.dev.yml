@@ -1,10 +1,7 @@
 services:
   db:
     image: postgres:18
-    environment:
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=pnscore
+    env_file: .env
     volumes:
       - postgres_data:/var/lib/postgresql/18/data
     restart: unless-stopped
