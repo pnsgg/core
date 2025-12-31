@@ -1,0 +1,101 @@
+---
+import Bluesky from '@/assets/icons/Bluesky.svg';
+import Discord from '@/assets/icons/Discord.svg';
+import Instagram from '@/assets/icons/Instagram.svg';
+import SendPlaneFilled from '@/assets/icons/SendPlaneFilled.svg';
+import TikTok from '@/assets/icons/TikTok.svg';
+import Twitch from '@/assets/icons/Twitch.svg';
+import X from '@/assets/icons/X.svg';
+import YouTube from '@/assets/icons/YouTube.svg';
+import Button from '@/components/Button.astro';
+import type { SvgComponent } from 'astro/types';
+
+type SocialMedia = {
+  titre: string;
+  href: string;
+  icone: SvgComponent;
+  libelle?: string;
+};
+
+const socialMedia: SocialMedia[] = [
+  {
+    titre: 'Discord',
+    href: 'https://discord.gg/KNRYc2tujV',
+    icone: Discord,
+  },
+  {
+    titre: 'Bluesky',
+    href: 'https://bsky.app/profile/pns.gg',
+    icone: Bluesky,
+  },
+  {
+    titre: 'X (anciennement Twitter)',
+    href: 'https://x.com/pns_gg',
+    icone: X,
+  },
+  {
+    titre: 'Instagram',
+    href: 'https://instagram.com/pns_gg',
+    icone: Instagram,
+  },
+  {
+    titre: 'TikTok',
+    href: 'https://tiktok.com/@pns_gg',
+    icone: TikTok,
+  },
+  {
+    titre: 'YouTube',
+    href: 'https://youtube.com/@pnspointgg',
+    icone: YouTube,
+  },
+  {
+    titre: 'Twitch',
+    href: 'https://twitch.tv/pnsgg',
+    icone: Twitch,
+  },
+  {
+    titre: 'Email',
+    href: 'mailto:contact@pns.gg',
+    icone: SendPlaneFilled,
+    libelle: 'contact@pns.gg',
+  },
+];
+---
+
+<section id="a-propos">
+  <h2>À propos de PNS</h2>
+
+  <p>
+    PNS est une association loi 1901 domiciliée à l'Université de Toulouse proposant des événements
+    Smash Bros. qualitatifs, originaux et décalés.
+  </p>
+
+  <p>
+    Nous voulons briser les codes des compétitions traditionnelles en proposant des événements et
+    formats novateurs.
+  </p>
+
+  <ul id="liens">
+    {
+      socialMedia.map((s) => (
+        <li>
+          <Button href={s.href} aria-label={s.titre} title={s.titre} variante="secondaire">
+            <s.icone />
+            {s.libelle}
+          </Button>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style lang="scss">
+  #liens {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+</style>

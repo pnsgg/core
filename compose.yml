@@ -2,9 +2,9 @@ services:
   app:
     build:
       context: .
-      dockerfile: backend.Dockerfile
+      dockerfile: ./apps/backend/Dockerfile
     ports:
-      - '8000:8000'
+      - "3000:3000"
     environment:
       - DATABASE_URL=postgresql://user:password@db:5432/pnscore
     depends_on:

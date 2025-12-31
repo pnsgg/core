@@ -1,0 +1,48 @@
+---
+import favicon from '@/assets/favicon.png?url';
+import PNSNoBackground from '@/assets/logos/PNSNoBackground.svg';
+import '../styles/globals.scss';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PNS</title>
+
+    <link rel="shortcut icon" href={favicon} type="image/x-icon" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+
+  <body>
+    <slot />
+
+    <footer>
+      <PNSNoBackground />
+    </footer>
+  </body>
+</html>
+
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Instrument Sans', var(--polices-defaut);
+
+    background-color: var(--rouge-pns);
+    background-attachment: fixed;
+
+    @media (prefers-color-scheme: dark) {
+      background-image: linear-gradient(var(--rouge-pns), #9a112e);
+    }
+  }
+
+  footer {
+    display: grid;
+    margin-top: auto;
+    padding-top: 2rem;
+  }
+</style>

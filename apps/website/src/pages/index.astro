@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import APropos from './_APropos.astro';
+import Benevolat from './_Benevolat.astro';
+import BloomBagarre from './_BloomBagarre.astro';
+import KanDI from './_KanDI.astro';
+---
+
+<BaseLayout>
+  <main>
+    <KanDI />
+
+    <BloomBagarre />
+
+    <Benevolat />
+
+    <APropos />
+  </main>
+</BaseLayout>
+
+<style>
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1rem;
+    padding-inline: 1rem;
+
+    max-width: 950px;
+    width: 100%;
+  }
+
+  :global(section) {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    background-color: var(--couleur-section);
+    color: var(--couleur-texte);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      font-variation-settings: 'wdth' 80;
+    }
+
+    p {
+      font-size: 1.125rem;
+    }
+  }
+</style>
