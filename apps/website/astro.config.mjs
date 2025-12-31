@@ -9,4 +9,8 @@ export default defineConfig({
     mode: 'standalone',
   }),
   output: 'server',
+  server: {
+    host: true,
+    port: 4321,
+  },
 });

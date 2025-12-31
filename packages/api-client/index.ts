@@ -1,4 +1,7 @@
 import { treaty } from '@elysiajs/eden';
 import type { App } from 'backend';
 
-export const pnrestClient = treaty<App>('localhost:3000');
+const API_URL =
+  process.env.NODE_ENV === 'production' ? 'http://backend:3000' : 'http://localhost:3000';
+
+export const pnsClient = treaty<App>(API_URL);

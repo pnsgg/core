@@ -2,10 +2,8 @@ FROM oven/bun:latest AS base
 
 FROM base AS install
 WORKDIR /app
-COPY package.json bun.lock tsconfig.json ./
-COPY apps/backend/package.json ./apps/backend/
-COPY packages/api-client/package.json ./packages/api-client/
-RUN bun install --frozen-lockfile --production
+COPY . .
+RUN bun install --frozen-lockfile
 
 FROM install AS builder
 WORKDIR /app

@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@astrojs/node": "^9.5.1",
-    "astro": "^5.16.1"
+    "astro": "^5.16.1",
+    "@pns/api-client": "workspace:*"
   },
   "devDependencies": {
     "sass": "^1.97.1",

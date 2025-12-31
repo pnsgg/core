@@ -1,25 +1,52 @@
 services:
-  app:
+  backend:
     build:
       context: .
       dockerfile: ./apps/backend/Dockerfile
     ports:
       - "3000:3000"
-    environment:
-      - DATABASE_URL=postgresql://user:password@db:5432/pnscore
+    env_file: .env
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
     restart: unless-stopped
 
   db:
     image: postgres:18
-    environment:
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=pnscore
+    env_file: .env
     volumes:
       - postgres_data:/var/lib/postgresql/18/data
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d pnscore"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  migrate:
+    build:
+      context: .
+      dockerfile: ./apps/backend/Dockerfile
+      target: install
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
+    working_dir: /app/apps/backend
+    command: bunx --bun drizzle-kit migrate
+
+  website:
+    build:
+      context: .
+      dockerfile: ./apps/website/Dockerfile
+    ports:
+      - "4321:4321"
+    env_file: .env
+    depends_on:
+      backend:
+        condition: service_started
 
 volumes:
   postgres_data:
