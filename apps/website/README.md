@@ -1,6 +1,6 @@
 # Website
 
-Site vitrine de PNS statique avec plusieurs sections.
+Site vitrine statique de PNS avec plusieurs sections.
 
 Documentation à faire...
 
