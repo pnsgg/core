@@ -2,7 +2,7 @@ FROM oven/bun AS build
 WORKDIR /app
 
 COPY . .
-RUN bun install
+RUN bun install --frozen-lockfile
 
 WORKDIR /app/apps/website
 RUN bun run build
