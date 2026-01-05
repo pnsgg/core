@@ -3,8 +3,6 @@ services:
     build:
       context: .
       dockerfile: ./apps/backend/Dockerfile
-    # ports:
-    #   - "3000:3000"
     environment:
       - DATABASE_URL=${DATABASE_URL:?}
       - FIREFLY_TOKEN=${FIREFLY_TOKEN:?}
@@ -40,16 +38,20 @@ services:
         condition: service_healthy
     working_dir: /app/apps/backend
     command: bunx --bun drizzle-kit migrate
+    exclude_from_hc: true
 
   website:
     build:
       context: .
       dockerfile: ./apps/website/Dockerfile
-    # ports:
-    #   - "4321:4321"
     depends_on:
       backend:
         condition: service_started
+    labels:
+      - traefik.enable=true
+      - traefik.http.middlewares.redirect-www-to-non-www.redirectregex.regex=^(http|https)://www\.(.+)
+      - traefik.http.middlewares.redirect-www-to-non-www.redirectregex.replacement=${1}://${2}
+      - traefik.http.middlewares.redirect-www-to-non-www.redirectregex.permanent=true
 
 volumes:
   postgres_data:
