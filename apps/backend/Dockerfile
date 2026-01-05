@@ -12,9 +12,14 @@ COPY apps/backend/src ./apps/backend/src
 RUN bun build --compile --minify-whitespace --minify-syntax --target bun --outfile server apps/backend/src/index.ts
 
 FROM base AS runner
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /app/server ./
+
 ENV NODE_ENV=production
 USER bun
-WORKDIR /app
-COPY --from=builder /app/server ./
 EXPOSE 3000
+
 ENTRYPOINT [ "/app/server" ]
