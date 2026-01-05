@@ -4,16 +4,10 @@ import APropos from './_APropos.astro';
 import Benevolat from './_Benevolat.astro';
 import BloomBagarre from './_BloomBagarre.astro';
 import KanDI from './_KanDI.astro';
-
-import { pnsClient } from '@pns/api-client';
-
-const events = await pnsClient.series.get();
 ---
 
 <BaseLayout>
   <main>
-    {events.data.map((e) => <p>{e.id}</p>)}
-
     <KanDI />
 
     <BloomBagarre />
