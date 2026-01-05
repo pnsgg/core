@@ -1,0 +1,123 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'a'> & {
+  id?: string;
+  variante?: 'primaire' | 'secondaire' | 'kandi-primaire' | 'kandi-secondaire';
+  inline?: boolean;
+};
+
+const { variante = 'primaire', href, inline = false, ...restProps } = Astro.props;
+---
+
+<a
+  {href}
+  target={href?.toString()?.startsWith('/') || href?.toString()?.startsWith('')
+    ? '_self'
+    : '_blank'}
+  rel="noreferrer noopener"
+  class={restProps.class}
+  data-variante={variante}
+  data-inline={inline}
+  {...restProps}
+>
+  <slot />
+</a>
+
+<style lang="scss">
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    padding: 1rem 1.25rem;
+    border-radius: 99px;
+    min-height: 60px;
+    width: 100%;
+
+    text-decoration: none;
+    text-align: center;
+    font-size: clamp(1.125rem, 5vw, 1.25rem);
+    font-weight: 700;
+    font-variation-settings: 'wdth' 85;
+
+    &[data-inline='true'] {
+      display: inline-flex;
+      width: fit-content;
+    }
+
+    &:has(svg:only-child) {
+      padding: 1rem;
+    }
+
+    &[data-variante='primaire'] {
+      --border-color: var(--rouge-pns);
+      --background-color: var(--border-color);
+      --text-color: var(--blanc);
+
+      @media (hover: hover) {
+        &:hover:not([aria-disabled='true']) {
+          --border-color: #d81640;
+        }
+      }
+    }
+
+    &[data-variante='secondaire'] {
+      --border-color: var(--couleur-texte);
+      --background-color: var(--couleur-section);
+      --text-color: var(--couleur-texte);
+
+      @media (hover: hover) {
+        &:hover:not([aria-disabled='true']) {
+          --background-color: var(--rouge-pns);
+          --border-color: var(--rouge-pns);
+          --text-color: var(--blanc);
+        }
+      }
+    }
+
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+
+    &[aria-disabled='true'] {
+      filter: saturate(0);
+      cursor: not-allowed;
+    }
+
+    &[data-variante='kandi-primaire'],
+    &[data-variante='kandi-secondaire'] {
+      color: var(--blanc);
+
+      box-shadow:
+        inset 0px 4px 4px rgba(255, 255, 255, 0.25),
+        inset 0px -3px 4px rgba(0, 0, 0, 0.25);
+
+      background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 32px,
+        #ffffff20 32px,
+        #ffffff20 64px
+      );
+
+      transition: transform 100ms ease;
+
+      @media (hover: hover) {
+        &:hover {
+          filter: brightness(0.9);
+          transform: translateY(-2px);
+        }
+      }
+    }
+
+    &[data-variante='kandi-primaire'] {
+      background-color: var(--rouge-pns);
+    }
+
+    &[data-variante='kandi-secondaire'] {
+      background-color: var(--bleu-kandi);
+    }
+  }
+</style>

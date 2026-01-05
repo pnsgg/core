@@ -1,0 +1,165 @@
+---
+import oursons from '@/assets/KanDI-oursons.webp';
+import sucette from '@/assets/KanDI-sucette.webp';
+import LogoKanDI from '@/assets/logos/KanDI.webp';
+import Button from '@/components/Button.astro';
+import { Image } from 'astro:assets';
+---
+
+<section id="kandi">
+  <svg
+    class="haut-emballage"
+    width="900"
+    height="43"
+    viewBox="0 0 900 43"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M883.174 0.409695C883.657 -0.136565 884.541 -0.136565 885.024 0.409695L899.714 17.022C899.952 17.2917 900.03 17.6125 899.986 17.9126H900V42.937H0V17.9126H0.0136719C-0.029924 17.6125 0.0476432 17.2917 0.286133 17.022L14.9756 0.409695C15.4586 -0.13656 16.3431 -0.136551 16.8262 0.409695L27.0312 11.9507L37.2373 0.409695C37.7203 -0.136565 38.6048 -0.136565 39.0879 0.409695L49.293 11.9507L59.499 0.409695C59.982 -0.136411 60.8656 -0.136278 61.3486 0.409695L71.5547 11.9507L81.7607 0.409695C82.2438 -0.136336 83.1273 -0.13636 83.6104 0.409695L93.8154 11.9507L104.021 0.409695C104.505 -0.136555 105.389 -0.136534 105.872 0.409695L116.077 11.9507L126.283 0.409695C126.766 -0.136565 127.651 -0.136565 128.134 0.409695L138.339 11.9507L148.545 0.409695C149.028 -0.13652 149.912 -0.13655 150.396 0.409695L160.601 11.9507L170.807 0.409695C171.29 -0.136336 172.173 -0.13634 172.656 0.409695L182.861 11.9507L193.067 0.409695C193.55 -0.136547 194.435 -0.136512 194.918 0.409695L205.123 11.9507L215.329 0.409695C215.812 -0.136565 216.697 -0.136565 217.18 0.409695L227.385 11.9507L237.591 0.409695C238.074 -0.136536 238.958 -0.136555 239.441 0.409695L249.646 11.9507L259.853 0.409695C260.336 -0.136354 261.219 -0.136333 261.702 0.409695L271.908 11.9507L282.114 0.409695C282.597 -0.136273 283.481 -0.136413 283.964 0.409695L294.169 11.9507L304.375 0.409695C304.858 -0.136565 305.743 -0.136565 306.226 0.409695L316.431 11.9507L326.637 0.409695C327.12 -0.136551 328.004 -0.13656 328.487 0.409695L338.692 11.9507L348.898 0.409695C349.381 -0.136364 350.265 -0.136323 350.748 0.409695L360.954 11.9507L371.16 0.409695C371.643 -0.136293 372.527 -0.136393 373.01 0.409695L383.215 11.9507L393.421 0.409695C393.904 -0.136565 394.788 -0.136565 395.271 0.409695L405.477 11.9507L415.683 0.409695C416.166 -0.136551 417.05 -0.13656 417.533 0.409695L427.738 11.9507L437.944 0.409695C438.427 -0.136374 439.311 -0.136312 439.794 0.409695L450 11.9507L460.206 0.409695C460.689 -0.136293 461.573 -0.136393 462.056 0.409695L472.261 11.9507L482.467 0.409695C482.95 -0.136565 483.834 -0.136565 484.317 0.409695L494.522 11.9507L504.729 0.409695C505.212 -0.136565 506.096 -0.136565 506.579 0.409695L516.784 11.9507L526.99 0.409695C527.473 -0.136374 528.357 -0.136312 528.84 0.409695L539.046 11.9507L549.252 0.409695C549.735 -0.136323 550.619 -0.136403 551.102 0.409695L561.307 11.9507L571.513 0.409695C571.996 -0.136565 572.88 -0.136565 573.363 0.409695L583.568 11.9507L593.774 0.409695C594.257 -0.136565 595.142 -0.136565 595.625 0.409695L605.83 11.9507L616.036 0.409695C616.519 -0.136394 617.403 -0.136292 617.886 0.409695L628.092 11.9507L638.298 0.409695C638.781 -0.136334 639.664 -0.136353 640.147 0.409695L650.353 11.9507L660.559 0.409695C661.042 -0.136565 661.926 -0.136565 662.409 0.409695L672.614 11.9507L682.82 0.409695C683.303 -0.136565 684.188 -0.136565 684.671 0.409695L694.876 11.9507L705.082 0.409695C705.565 -0.136394 706.449 -0.136292 706.932 0.409695L717.138 11.9507L727.344 0.409695C727.827 -0.136354 728.71 -0.136333 729.193 0.409695L739.399 11.9507L749.605 0.409695C750.089 -0.136283 750.972 -0.136444 751.455 0.409695L761.66 11.9507L771.866 0.409695C772.349 -0.136565 773.234 -0.136565 773.717 0.409695L783.922 11.9507L794.128 0.409695C794.611 -0.136536 795.495 -0.136555 795.979 0.409695L806.184 11.9507L816.39 0.409695C816.873 -0.136334 817.756 -0.136353 818.239 0.409695L828.445 11.9507L838.651 0.409695C839.134 -0.136283 840.018 -0.136444 840.501 0.409695L850.706 11.9507L860.912 0.409695C861.395 -0.136565 862.28 -0.136565 862.763 0.409695L872.968 11.9507L883.174 0.409695Z"
+      fill="url(#paint0_linear_61_30)"></path>
+    <defs>
+      <linearGradient
+        id="paint0_linear_61_30"
+        x1="450"
+        y1="14.5"
+        x2="450"
+        y2="43"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="var(--couleur-section)"></stop>
+        <stop offset="0.250596" stop-color="light-dark(#DADADA, #424242)"></stop>
+        <stop offset="0.501114" stop-color="var(--couleur-section)"></stop>
+        <stop offset="0.747893" stop-color="light-dark(#DADADA, #424242)"></stop>
+        <stop offset="1" stop-color="var(--couleur-section)"></stop>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <Image class="sucette" src={sucette} alt="" aria-hidden="true" inert="true" draggable="false" />
+
+  <Image class="oursons" src={oursons} alt="" aria-hidden="true" inert="true" draggable="false" />
+
+  <div class="en-tete">
+    <Image src={LogoKanDI} alt="PNS KanD.I." width="766" height="223" />
+
+    <h2>
+      Le nouveau rendez-vous du mois de PNS.<br />
+      64 places, <span class="rouge">règles Smash Bros. traditionnelles</span>, sur toute une
+      journée.<br />
+      <span class="bleu">Samedi 24 janvier</span> à l’Université de Toulouse.
+    </h2>
+  </div>
+
+  <div class="Buttons">
+    <Button href="https://youtu.be/OG5Bcy22X8E" variante="kandi-primaire">
+      Voir la bande-annonce
+    </Button>
+
+    <Button href="https://start.gg/kandi" variante="kandi-secondaire">
+      Billetterie Start.gg
+    </Button>
+  </div>
+</section>
+
+<style lang="scss">
+  #kandi {
+    gap: 2rem;
+    position: relative;
+
+    font-family: 'National Park', var(--polices-defaut);
+    --bleu-kandi: light-dark(#1b39ff, #1b76ff);
+
+    margin-top: 5rem;
+    border-radius: 1.5rem;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-top: none;
+
+    @media (max-width: 870px) {
+      padding: 0.75rem;
+
+      .en-tete img {
+        width: calc(100% + 3rem);
+        max-width: none;
+      }
+    }
+
+    .haut-emballage {
+      position: absolute;
+      bottom: calc(100% - 2px);
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: auto;
+
+      @media (max-width: 870px) {
+        right: 50%;
+      }
+    }
+
+    .sucette,
+    .oursons {
+      position: absolute;
+
+      @media (max-width: 870px) {
+        display: none;
+      }
+    }
+
+    .sucette {
+      left: 0;
+      top: 100px;
+    }
+
+    .oursons {
+      right: 0;
+      top: 80px;
+    }
+
+    .en-tete {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+
+      h2 {
+        font-weight: 500;
+        font-size: clamp(1.25rem, 5vw, 1.5rem);
+        line-height: 2rem;
+        text-align: center;
+        text-wrap: balance;
+        width: 100%;
+
+        @media (max-width: 870px) {
+          text-align: left;
+
+          br {
+            display: none;
+          }
+        }
+
+        .rouge {
+          color: var(--rouge-pns);
+        }
+
+        .bleu {
+          color: var(--bleu-kandi);
+        }
+
+        @media (prefers-color-scheme: dark) {
+          .rouge,
+          .bleu {
+            font-weight: 700;
+          }
+        }
+      }
+    }
+
+    .Buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
+</style>

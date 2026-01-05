@@ -11,9 +11,11 @@ export abstract class EventsService {
   }
 
   static async getEvent(id: string) {
-    return await db.query.eventsTable.findFirst({
-      where: eq(eventsTable.id, id),
-    });
+    return (
+      (await db.query.eventsTable.findFirst({
+        where: eq(eventsTable.id, id),
+      })) ?? status(404)
+    );
   }
 
   static async createEvent(data: EventsModel.CreateEventBody) {
@@ -53,7 +55,7 @@ export abstract class EventsService {
       .values(
         data.tournaments.map((t) => ({
           ...t,
-          eventId: createdEvent.id,
+          eventId: createdEvent!.id,
         })),
       )
       .returning(returning);

@@ -1,0 +1,73 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: ./apps/backend/Dockerfile
+    environment:
+      - DATABASE_URL=${DATABASE_URL:?}
+      - FIREFLY_TOKEN=${FIREFLY_TOKEN:?}
+      - FIREFLY_API_URL=${FIREFLY_API_URL:?}
+    depends_on:
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://0.0.0.0:3000/series"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+  db:
+    image: postgres:18
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:?}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?}
+      - POSTGRES_DB=${POSTGRES_DB:?}
+    volumes:
+      - postgres_data:/var/lib/postgresql/18/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  migrate:
+    build:
+      context: .
+      dockerfile: ./apps/backend/Dockerfile
+      target: install
+    environment:
+      - DATABASE_URL=${DATABASE_URL:?}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: no
+    working_dir: /app/apps/backend
+    command: bunx --bun drizzle-kit migrate
+    exclude_from_hc: true
+
+  website:
+    build:
+      context: .
+      dockerfile: ./apps/website/Dockerfile
+    depends_on:
+      backend:
+        condition: service_started
+    labels:
+      - traefik.enable=true
+      - traefik.http.middlewares.redirect-www-to-non-www.redirectregex.regex=^(http|https)://www\.(.+)
+      - traefik.http.middlewares.redirect-www-to-non-www.redirectregex.replacement=${1}://${2}
+      - traefik.http.middlewares.redirect-www-to-non-www.redirectregex.permanent=true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4321"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+volumes:
+  postgres_data:
