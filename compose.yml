@@ -45,6 +45,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    restart: no
     working_dir: /app/apps/backend
     command: bunx --bun drizzle-kit migrate
     exclude_from_hc: true
