@@ -14,7 +14,7 @@ services:
         condition: service_completed_successfully
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/series"]
+      test: ["CMD", "curl", "-f", "http://0.0.0.0:3000/series"]
       interval: 10s
       timeout: 5s
       retries: 3
