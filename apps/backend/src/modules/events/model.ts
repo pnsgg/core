@@ -30,6 +30,7 @@ export namespace EventsModel {
       .Decode((e) => e.toString())
       .Encode((e) => parseInt(e)),
     name: t.String(),
+    slug: t.String(),
     startsAt: t.Date(),
     endsAt: t.Date(),
     seriesId: t.String({

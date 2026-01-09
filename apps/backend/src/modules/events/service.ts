@@ -7,7 +7,9 @@ import { EventsModel } from './model';
 
 export abstract class EventsService {
   static async getEvents() {
-    return await db.query.eventsTable.findMany();
+    return await db.query.eventsTable.findMany({
+      orderBy: ({ startsAt }, { desc }) => desc(startsAt),
+    });
   }
 
   static async getEvent(id: string) {
@@ -31,11 +33,11 @@ export abstract class EventsService {
     if (data.endsAt.getTime() <= data.startsAt.getTime()) {
       throw status(
         400,
-        "La date de fin de l'événement ne peut pas être antérieure à la date de début.",
+        "La date de fin de l'événement ne peut pas être antérieure à la date de début."
       );
     }
 
-    const series = await SeriesService.getSeries(data.seriesId);
+    const series = await SeriesService.getSeriesByIdOrSlug(data.seriesId);
     if (!series) {
       throw status(404, 'Série non trouvée.');
     }
@@ -56,7 +58,7 @@ export abstract class EventsService {
         data.tournaments.map((t) => ({
           ...t,
           eventId: createdEvent!.id,
-        })),
+        }))
       )
       .returning(returning);
 
@@ -67,11 +69,11 @@ export abstract class EventsService {
     if (data.endsAt.getTime() <= data.startsAt.getTime()) {
       throw status(
         400,
-        "La date de fin de l'événement ne peut pas être antérieure à la date de début.",
+        "La date de fin de l'événement ne peut pas être antérieure à la date de début."
       );
     }
 
-    const series = await SeriesService.getSeries(data.seriesId);
+    const series = await SeriesService.getSeriesByIdOrSlug(data.seriesId);
     if (!series) {
       throw status(404, 'Série non trouvée.');
     }
@@ -94,7 +96,7 @@ export abstract class EventsService {
   static async modifyEventTournament(
     eventId: string,
     tournamentId: string,
-    data: EventsModel.ModifyTournamentBody,
+    data: EventsModel.ModifyTournamentBody
   ) {
     const event = await db.query.eventsTable.findFirst({
       where: eq(eventsTable.id, eventId),
