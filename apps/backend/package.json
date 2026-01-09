@@ -18,6 +18,7 @@
     "envalid": "^8.1.1"
   },
   "devDependencies": {
+    "@sinclair/typebox": "^0.34.41",
     "bun-types": "latest",
     "drizzle-kit": "^0.31.6",
     "pg": "^8.16.3",

@@ -82,12 +82,8 @@
           "name": "events_series_id_series_id_fk",
           "tableFrom": "events",
           "tableTo": "series",
-          "columnsFrom": [
-            "series_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["series_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -97,9 +93,7 @@
         "events_startggId_unique": {
           "name": "events_startggId_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "startgg_id"
-          ]
+          "columns": ["startgg_id"]
         }
       },
       "policies": {},
@@ -142,12 +136,8 @@
           "name": "fee_discounts_event_id_events_id_fk",
           "tableFrom": "fee_discounts",
           "tableTo": "events",
-          "columnsFrom": [
-            "event_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["event_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -233,12 +223,8 @@
           "name": "tournaments_event_id_events_id_fk",
           "tableFrom": "tournaments",
           "tableTo": "events",
-          "columnsFrom": [
-            "event_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["event_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -248,9 +234,7 @@
         "tournaments_startggId_unique": {
           "name": "tournaments_startggId_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "startgg_id"
-          ]
+          "columns": ["startgg_id"]
         }
       },
       "policies": {},

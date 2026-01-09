@@ -2,6 +2,7 @@
   "name": "pns-core",
   "private": true,
   "scripts": {
+    "format": "prettier --write .",
     "dev": "bun --filter '*' dev",
     "build": "bun --filter '*' build",
     "test": "bun --filter '*' test"
@@ -9,5 +10,9 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "prettier": "^3.7.4",
+    "typescript": "^5.9.3"
+  }
 }
