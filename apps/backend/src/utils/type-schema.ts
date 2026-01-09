@@ -60,17 +60,17 @@ export function RecursiveOptional<T extends TSchema>(schema: T): TRecursiveOptio
 
 export const NoDefaultEnum = <T extends [TEnumValue, ...TEnumValue[]]>(
   values: T,
-  options?: SchemaOptions,
+  options?: SchemaOptions
 ) => t.UnionEnum(values, { default: undefined, ...options });
 
 export function createModifySchema<T extends TObject>(schema: T): TRecursiveOptional<T>;
 export function createModifySchema<T extends TObject, Keys extends (keyof Static<T>)[]>(
   schema: T,
-  opts: { omit: Keys },
+  opts: { omit: Keys }
 ): TRecursiveOptional<TOmit<T, Keys>>;
 export function createModifySchema<T extends TObject, Keys extends (keyof Static<T>)[]>(
   schema: T,
-  opts?: { omit?: Keys },
+  opts?: { omit?: Keys }
 ): TRecursiveOptional<T> | TRecursiveOptional<TOmit<T, Keys>> {
   return RecursiveOptional({
     ...(opts?.omit ? t.Omit(schema, opts.omit) : schema),

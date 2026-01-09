@@ -51,7 +51,7 @@ export abstract class SalesService {
     if (data.stancerId && !CardPaymentMethods.includes(data.paymentMethod)) {
       throw status(
         400,
-        `Une création de sale avec un stancerId doit avoir un paymentMethod de type : ${CardPaymentMethods.join(', ')}`,
+        `Une création de sale avec un stancerId doit avoir un paymentMethod de type : ${CardPaymentMethods.join(', ')}`
       );
     }
 
@@ -67,8 +67,8 @@ export abstract class SalesService {
       .where(
         inArray(
           productsTable.id,
-          data.products.map((p) => p.productId),
-        ),
+          data.products.map((p) => p.productId)
+        )
       );
 
     if (products.length !== data.products.length) {
@@ -79,7 +79,7 @@ export abstract class SalesService {
 
       throw status(
         400,
-        `Un ou plusieurs produits n'ont pas été trouvés : ${dataProductIdsNotFound.join(', ')}`,
+        `Un ou plusieurs produits n'ont pas été trouvés : ${dataProductIdsNotFound.join(', ')}`
       );
     }
 
@@ -94,7 +94,7 @@ export abstract class SalesService {
           price: product.price,
           quantity: product.quantity,
           index,
-        })),
+        }))
       )
       .returning({
         price: productSalesTable.price,
@@ -135,7 +135,7 @@ export abstract class SalesService {
       ? {
           ...sale.stockMovement,
           fireflyData: await fireflyFetch<FireflyIII.PartialAPIGetTransactionResponse>(
-            `/attachments/${sale.stockMovement.fireflyId}`,
+            `/attachments/${sale.stockMovement.fireflyId}`
           ),
         }
       : null;
@@ -178,7 +178,7 @@ export abstract class SalesService {
     const [deletedProductSale] = await db
       .delete(productSalesTable)
       .where(
-        and(eq(productSalesTable.saleId, saleId), eq(productSalesTable.index, productSaleIndex)),
+        and(eq(productSalesTable.saleId, saleId), eq(productSalesTable.index, productSaleIndex))
       )
       .returning({ id: productSalesTable.id });
 

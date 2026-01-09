@@ -39,5 +39,5 @@ export const salesModule = new Elysia({ prefix: '/sales' })
         id: Uuid(),
         index: t.Numeric(),
       }),
-    },
+    }
   );

@@ -82,12 +82,8 @@
           "name": "events_series_id_series_id_fk",
           "tableFrom": "events",
           "tableTo": "series",
-          "columnsFrom": [
-            "series_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["series_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -97,9 +93,7 @@
         "events_startggId_unique": {
           "name": "events_startggId_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "startgg_id"
-          ]
+          "columns": ["startgg_id"]
         }
       },
       "policies": {},
@@ -142,12 +136,8 @@
           "name": "fee_discounts_event_id_events_id_fk",
           "tableFrom": "fee_discounts",
           "tableTo": "events",
-          "columnsFrom": [
-            "event_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["event_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -206,12 +196,8 @@
           "name": "product_sales_product_id_products_id_fk",
           "tableFrom": "product_sales",
           "tableTo": "products",
-          "columnsFrom": [
-            "product_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["product_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -219,12 +205,8 @@
           "name": "product_sales_sale_id_sales_id_fk",
           "tableFrom": "product_sales",
           "tableTo": "sales",
-          "columnsFrom": [
-            "sale_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["sale_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -357,12 +339,8 @@
           "name": "sales_event_id_events_id_fk",
           "tableFrom": "sales",
           "tableTo": "events",
-          "columnsFrom": [
-            "event_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["event_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         },
@@ -370,12 +348,8 @@
           "name": "sales_stock_movement_id_stock_movements_id_fk",
           "tableFrom": "sales",
           "tableTo": "stock_movements",
-          "columnsFrom": [
-            "stock_movement_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["stock_movement_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -474,12 +448,8 @@
           "name": "stock_movements_product_id_products_id_fk",
           "tableFrom": "stock_movements",
           "tableTo": "products",
-          "columnsFrom": [
-            "product_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["product_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -487,12 +457,8 @@
           "name": "stock_movements_event_id_events_id_fk",
           "tableFrom": "stock_movements",
           "tableTo": "events",
-          "columnsFrom": [
-            "event_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["event_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -553,12 +519,8 @@
           "name": "tournaments_event_id_events_id_fk",
           "tableFrom": "tournaments",
           "tableTo": "events",
-          "columnsFrom": [
-            "event_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["event_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -568,9 +530,7 @@
         "tournaments_startggId_unique": {
           "name": "tournaments_startggId_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "startgg_id"
-          ]
+          "columns": ["startgg_id"]
         }
       },
       "policies": {},
@@ -582,52 +542,27 @@
     "public.payment_methods": {
       "name": "payment_methods",
       "schema": "public",
-      "values": [
-        "VISA",
-        "MASTERCARD",
-        "CB",
-        "CASH",
-        "PAYPAL"
-      ]
+      "values": ["VISA", "MASTERCARD", "CB", "CASH", "PAYPAL"]
     },
     "public.product_categories": {
       "name": "product_categories",
       "schema": "public",
-      "values": [
-        "MERCHANDIZING",
-        "DRINKS",
-        "FOOD"
-      ]
+      "values": ["MERCHANDIZING", "DRINKS", "FOOD"]
     },
     "public.stock_movement_types": {
       "name": "stock_movement_types",
       "schema": "public",
-      "values": [
-        "BUY",
-        "SALE",
-        "LOSS",
-        "RETURN"
-      ]
+      "values": ["BUY", "SALE", "LOSS", "RETURN"]
     },
     "public.tournament_bracket_types": {
       "name": "tournament_bracket_types",
       "schema": "public",
-      "values": [
-        "ROUND-ROBIN",
-        "SIMPLE",
-        "DOUBLE",
-        "MATCHMAKING",
-        "OTHER"
-      ]
+      "values": ["ROUND-ROBIN", "SIMPLE", "DOUBLE", "MATCHMAKING", "OTHER"]
     },
     "public.units_of_measurement": {
       "name": "units_of_measurement",
       "schema": "public",
-      "values": [
-        "UNIT",
-        "KILOGRAM",
-        "LITER"
-      ]
+      "values": ["UNIT", "KILOGRAM", "LITER"]
     }
   },
   "schemas": {},

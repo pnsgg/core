@@ -31,7 +31,7 @@ export abstract class StockMovementsService {
           ...movement,
           fireflyData,
         };
-      }),
+      })
     );
 
     return movementsWithFireflyData;

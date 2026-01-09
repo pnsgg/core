@@ -21,7 +21,7 @@ export const stockMovementsModule = new Elysia({ prefix: '/stock-movements' })
     ({ params: { id }, body }) => StockMovementsService.modifyStockMovement(id, body),
     {
       body: StockMovementsModel.modifyStockMovementBody,
-    },
+    }
   )
   // DELETE /stock-movements/:id
   // Supprime un mouvement de stock

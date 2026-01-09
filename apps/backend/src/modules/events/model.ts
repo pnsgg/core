@@ -7,7 +7,7 @@ export namespace EventsModel {
       .Transform(
         t.Numeric({
           minimum: 1,
-        }),
+        })
       )
       .Decode((e) => e.toString())
       .Encode((e) => parseInt(e)),
@@ -25,10 +25,11 @@ export namespace EventsModel {
       .Transform(
         t.Numeric({
           minimum: 1,
-        }),
+        })
       )
       .Decode((e) => e.toString())
       .Encode((e) => parseInt(e)),
+    slug: t.String({ pattern: '^[a-z0-9]+(?:-[a-z0-9]+)*$' }),
     name: t.String(),
     startsAt: t.Date(),
     endsAt: t.Date(),
@@ -74,12 +75,12 @@ export namespace EventsModel {
     slots: t.Optional(
       t.Number({
         minimum: 2,
-      }),
+      })
     ),
     bracketType: t.Optional(
       t.UnionEnum(TournamentBracketTypes, {
         default: undefined,
-      }),
+      })
     ),
   });
 
