@@ -12,8 +12,8 @@ import Button from '@/components/Button.astro';
     <LogoBloomBagarre />
 
     <h2>
-      L'événement Smash Bros. et Mario Kart de l'Université de Toulouse, organisé un vendredi sur
-      deux par PNS.
+      BloomBagarre est notre semi-hebdomadaire expérimental Smash Bros. et Mario Kart à l’Université
+      de Toulouse.
     </h2>
   </div>
 
@@ -23,9 +23,9 @@ import Button from '@/components/Button.astro';
         <CalendarFilled />
 
         <div class="valeurs">
-          <span class="libelle"> Date </span>
+          <span class="libelle"> Prochaine date </span>
 
-          <span class="valeur"> Vendredi 16 janvier </span>
+          <span class="valeur"> Vendredi 30 janvier </span>
         </div>
       </li>
       <li>
@@ -43,7 +43,7 @@ import Button from '@/components/Button.astro';
         <div class="valeurs">
           <span class="libelle"> Lieu </span>
 
-          <span class="valeur"> Université de Toulouse </span>
+          <span class="valeur"> Salle 206 du bâtiment U4<br /> Université de Toulouse </span>
         </div>
       </li>
       <li>
@@ -60,10 +60,10 @@ import Button from '@/components/Button.astro';
     </ul>
 
     <div class="boutons">
-      <!-- href="https://start.gg/bloombagarre" -->
-      <Button variante="primaire" aria-disabled="true">
-        <!-- Billetterie et informations -->
-        Billetterie (à venir)
+      <Button href="https://start.gg/bloombagarre" variante="primaire">
+        <!-- aria-disabled="true" -->
+        Billetterie et informations
+        <!-- Billetterie (à venir) -->
       </Button>
     </div>
   </div>
@@ -74,7 +74,7 @@ import Button from '@/components/Button.astro';
     flex-direction: row;
     gap: 3rem;
 
-    font-family: 'Cabinet Grotesk', var(--polices-defaut);
+    font-family: 'Instrument Sans', var(--polices-defaut);
 
     @media (max-width: 870px) {
       flex-direction: column;
@@ -84,20 +84,24 @@ import Button from '@/components/Button.astro';
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
+      width: 100%;
 
       @media (max-width: 870px) {
         align-items: center;
       }
 
       svg {
-        max-width: 400px;
+        width: 100%;
+        max-width: 410px;
       }
 
       h2 {
-        font-size: 1.5rem;
+        font-size: 1.375rem;
         max-width: 30ch;
         font-weight: 500;
         text-wrap: balance;
+        font-variation-settings: 'wdth' 100;
+        line-height: 1.5;
 
         @media (max-width: 870px) {
           text-align: center;
@@ -110,7 +114,7 @@ import Button from '@/components/Button.astro';
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
-      flex: 1;
+      width: 100%;
 
       ul {
         display: contents;
@@ -131,7 +135,8 @@ import Button from '@/components/Button.astro';
 
             .libelle {
               font-size: 1.25rem;
-              font-weight: 700;
+              font-weight: 600;
+              font-variation-settings: 'wdth' 85;
 
               @media (max-width: 870px) {
                 display: none;
@@ -139,10 +144,8 @@ import Button from '@/components/Button.astro';
             }
 
             .valeur {
-              font-size: 1.125rem;
-
               @media (max-width: 870px) {
-                font-size: 1.375rem;
+                font-size: 1.25rem;
                 font-weight: 700;
               }
             }
