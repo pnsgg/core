@@ -18,5 +18,5 @@ export const seriesModule = new Elysia({ prefix: '/series' })
     },
     {
       body: SeriesModel.createSeriesBody,
-    }
+    },
   );
