@@ -25,7 +25,7 @@ import Button from '@/components/Button.astro';
         <div class="valeurs">
           <span class="libelle"> Prochaine date </span>
 
-          <span class="valeur"> Vendredi 30 janvier </span>
+          <span class="valeur"> Vendredi 20 février </span>
         </div>
       </li>
       <li>
@@ -60,10 +60,10 @@ import Button from '@/components/Button.astro';
     </ul>
 
     <div class="boutons">
-      <Button href="https://start.gg/bloombagarre" variante="primaire">
-        <!-- aria-disabled="true" -->
-        Billetterie et informations
-        <!-- Billetterie (à venir) -->
+      <!-- href="https://start.gg/bloombagarre"  -->
+      <Button aria-disabled="true" variante="primaire">
+        <!-- Billetterie et informations -->
+        Billetterie (à venir)
       </Button>
     </div>
   </div>
@@ -146,7 +146,8 @@ import Button from '@/components/Button.astro';
             .valeur {
               @media (max-width: 870px) {
                 font-size: 1.25rem;
-                font-weight: 700;
+                font-weight: 600;
+                font-variation-settings: 'wdth' 85;
               }
             }
           }
