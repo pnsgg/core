@@ -1,10 +1,21 @@
 {
+  "plugins": ["prettier-plugin-astro"],
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    }
+  ],
   "arrowParens": "always",
+  "htmlWhitespaceSensitivity": "css",
   "singleQuote": true,
-  "printWidth": 100,
+  "jsxSingleQuote": false,
   "endOfLine": "lf",
+  "trailingComma": "all",
+  "printWidth": 100,
   "semi": true,
-  "tabWidth": 2,
   "useTabs": false,
-  "trailingComma": "es5"
+  "tabWidth": 2
 }

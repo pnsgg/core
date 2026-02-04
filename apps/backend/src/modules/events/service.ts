@@ -7,7 +7,9 @@ import { EventsModel } from './model';
 
 export abstract class EventsService {
   static async getEvents() {
-    return await db.query.eventsTable.findMany();
+    return await db.query.eventsTable.findMany({
+      orderBy: ({ startsAt }, { desc }) => desc(startsAt),
+    });
   }
 
   static async getEvent(id: string) {
@@ -35,7 +37,7 @@ export abstract class EventsService {
       );
     }
 
-    const series = await SeriesService.getSeries(data.seriesId);
+    const series = await SeriesService.getSeriesByIdOrSlug(data.seriesId);
     if (!series) {
       throw status(404, 'Série non trouvée.');
     }
@@ -71,7 +73,7 @@ export abstract class EventsService {
       );
     }
 
-    const series = await SeriesService.getSeries(data.seriesId);
+    const series = await SeriesService.getSeriesByIdOrSlug(data.seriesId);
     if (!series) {
       throw status(404, 'Série non trouvée.');
     }

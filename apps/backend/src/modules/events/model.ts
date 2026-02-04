@@ -31,6 +31,7 @@ export namespace EventsModel {
       .Encode((e) => parseInt(e)),
     slug: t.String({ pattern: '^[a-z0-9]+(?:-[a-z0-9]+)*$' }),
     name: t.String(),
+    slug: t.String(),
     startsAt: t.Date(),
     endsAt: t.Date(),
     seriesId: t.String({

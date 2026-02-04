@@ -1,0 +1,48 @@
+---
+import SmashRecapLogo from '@/assets/logos/SmashRecap.svg';
+import Button from '@/components/Button.astro';
+---
+
+<section id="smashrecap">
+  <div class="a-propos">
+    <SmashRecapLogo />
+
+    <p>
+      Découvrez votre parcours à travers les tournois, les batailles et les triomphes qui ont rendu
+      votre année Smash Bros. inoubliable.
+    </p>
+
+    <Button href="https://recap.pns.gg/fr"> Générer mon SmashRecap 2025 </Button>
+  </div>
+
+  <video preload="metadata" autoplay muted loop playsinline>
+    <source src="https://recap.pns.gg/videos/Glutonny.webm" type="video/webm" />
+    Votre navigateur ne supporte pas la lecture de vidéos.
+  </video>
+</section>
+
+<style lang="scss">
+  #smashrecap {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+
+    @media (max-width: 870px) {
+      flex-direction: column-reverse;
+    }
+
+    video {
+      max-width: 400px;
+      width: 100%;
+      border: 1px solid var(--couleur-texte);
+    }
+
+    .a-propos {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 100%;
+    }
+  }
+</style>

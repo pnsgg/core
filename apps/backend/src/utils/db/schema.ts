@@ -15,6 +15,7 @@ import {
  */
 export const seriesTable = pgTable('series', {
   id: uuid().defaultRandom().primaryKey(),
+  slug: text().unique().notNull(),
   name: text().notNull(),
 });
 
@@ -27,6 +28,7 @@ export const seriesRelations = relations(seriesTable, ({ many }) => ({
  */
 export const eventsTable = pgTable('events', {
   id: uuid().defaultRandom().primaryKey(),
+  slug: text().unique().notNull(),
   startggId: text().unique().notNull(),
   name: text().notNull(),
   startsAt: timestamp().notNull(),
