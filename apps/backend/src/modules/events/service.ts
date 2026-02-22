@@ -33,7 +33,7 @@ export abstract class EventsService {
     if (data.endsAt.getTime() <= data.startsAt.getTime()) {
       throw status(
         400,
-        "La date de fin de l'événement ne peut pas être antérieure à la date de début."
+        "La date de fin de l'événement ne peut pas être antérieure à la date de début.",
       );
     }
 
@@ -58,7 +58,7 @@ export abstract class EventsService {
         data.tournaments.map((t) => ({
           ...t,
           eventId: createdEvent!.id,
-        }))
+        })),
       )
       .returning(returning);
 
@@ -69,7 +69,7 @@ export abstract class EventsService {
     if (data.endsAt.getTime() <= data.startsAt.getTime()) {
       throw status(
         400,
-        "La date de fin de l'événement ne peut pas être antérieure à la date de début."
+        "La date de fin de l'événement ne peut pas être antérieure à la date de début.",
       );
     }
 
@@ -96,7 +96,7 @@ export abstract class EventsService {
   static async modifyEventTournament(
     eventId: string,
     tournamentId: string,
-    data: EventsModel.ModifyTournamentBody
+    data: EventsModel.ModifyTournamentBody,
   ) {
     const event = await db.query.eventsTable.findFirst({
       where: eq(eventsTable.id, eventId),
