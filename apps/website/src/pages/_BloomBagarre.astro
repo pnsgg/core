@@ -11,10 +11,7 @@ import Button from '@/components/Button.astro';
   <div class="a-propos">
     <LogoBloomBagarre />
 
-    <h2>
-      BloomBagarre est notre semi-hebdomadaire expérimental Smash Bros. et Mario Kart à l’Université
-      de Toulouse.
-    </h2>
+    <h2>BloomBagarre est l'hebdo Smash Bros. expérimental à l’Université de Toulouse.</h2>
   </div>
 
   <div class="infos-inscriptions">
@@ -25,7 +22,7 @@ import Button from '@/components/Button.astro';
         <div class="valeurs">
           <span class="libelle"> Prochaine date </span>
 
-          <span class="valeur"> Vendredi 20 février </span>
+          <span class="valeur"> Vendredi 3 mars </span>
         </div>
       </li>
       <li>
@@ -60,10 +57,9 @@ import Button from '@/components/Button.astro';
     </ul>
 
     <div class="boutons">
-      <!-- aria-disabled="true"  -->
-      <Button href="https://start.gg/bloombagarre" variante="primaire">
-        Billetterie et informations
-        <!-- Billetterie (à venir) -->
+      <Button href="https://start.gg/bloombagarre" variante="primaire" aria-disabled="true">
+        <!-- Billetterie et informations -->
+        Billetterie (à venir)
       </Button>
     </div>
   </div>
@@ -96,7 +92,8 @@ import Button from '@/components/Button.astro';
       }
 
       h2 {
-        font-size: 1.375rem;
+        font-family: 'Space Grotesk', var(--polices-defaut);
+        font-size: 1.75rem;
         max-width: 30ch;
         font-weight: 500;
         text-wrap: balance;
@@ -106,6 +103,10 @@ import Button from '@/components/Button.astro';
         @media (max-width: 870px) {
           text-align: center;
           max-width: none;
+        }
+
+        @media (max-width: 600px) {
+          font-size: 1.5rem;
         }
       }
     }
