@@ -1,0 +1,31 @@
+---
+import JouliasardImage from '@/assets/jouliasard.webp';
+import Button from '@/components/Button.astro';
+import { Image } from 'astro:assets';
+---
+
+<section id="jouliasard">
+  <h1>Roue du Jouliasard</h1>
+
+  <ul>
+    <li>Règles TLS sauf indication contraire</li>
+    <li>Une règle par game, <b>PAS</b> par set</li>
+  </ul>
+
+  <iframe src="https://wheelofnames.com/2zw-m45"></iframe>
+</section>
+
+<style lang="scss">
+  #jouliasard {
+    iframe {
+      width: 100%;
+      aspect-ratio: 1;
+      border: none;
+      border-radius: 50%;
+    }
+
+    ul {
+      padding: revert;
+    }
+  }
+</style>
