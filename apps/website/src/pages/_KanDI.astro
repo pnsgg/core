@@ -1,7 +1,7 @@
 ---
-import LogoKanDI from '@/assets/logos/KanDI.svg';
-import BanderoleInfoKanDI from '@/assets/BanderoleInfoKanDI.svg';
 import ArlequinKanDI from '@/assets/ArlequinKanDI.svg';
+import BanderoleInfoKanDI from '@/assets/BanderoleInfoKanDI.svg';
+import LogoKanDI from '@/assets/logos/KanDI.svg';
 import Button from '@/components/Button.astro';
 ---
 
@@ -26,7 +26,11 @@ import Button from '@/components/Button.astro';
     <ul>
       <li>64 places</li>
       <li>Tournoi Smash Bros. traditionnel</li>
-      <li>Tournoi Mario Kart 8 Deluxe</li>
+      <li>
+        <a href="https://x.com/pns_gg" rel="noopener noreferrer" target="_blank">
+          Votez pour le tournoi secondaire !
+        </a>
+      </li>
       <li>Buvette sur place</li>
     </ul>
 
@@ -36,8 +40,7 @@ import Button from '@/components/Button.astro';
       Samedi 28 mars à l'Université de Toulouse
     </div>
 
-    <!-- href="https://start.gg/kandi" -->
-    <Button aria-disabled="true"> Inscriptions le 28 février ! </Button>
+    <Button href="https://start.gg/kandi"> Inscriptions sur Start.gg </Button>
   </div>
 </section>
 
@@ -76,6 +79,7 @@ import Button from '@/components/Button.astro';
       .infos-rapides {
         position: relative;
         font-weight: 600;
+        color: var(--noir);
 
         @media (max-width: 870px) {
           display: none;
@@ -120,6 +124,15 @@ import Button from '@/components/Button.astro';
         text-align: center;
         font-weight: 600;
         text-wrap: balance;
+      }
+
+      li a {
+        color: var(--rouge-pns);
+        text-decoration: underline;
+
+        &:hover {
+          text-decoration: none;
+        }
       }
 
       ul {
