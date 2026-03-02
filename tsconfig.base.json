@@ -8,6 +8,7 @@
     "target": "esnext",
     "module": "esnext",
     "allowJs": true,
+    "checkJs": true,
 
     // Bundler mode
     "moduleResolution": "bundler",
@@ -29,7 +30,7 @@
     "noUnusedParameters": true,
     "noPropertyAccessFromIndexSignature": true,
     "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
 }
