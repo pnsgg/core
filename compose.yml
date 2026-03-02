@@ -20,6 +20,21 @@ services:
       retries: 3
       start_period: 5s
 
+  erpns:
+    build:
+      context: .
+      dockerfile: ./apps/erpns/Dockerfile
+    depends_on:
+      backend:
+        condition: service_started
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:5173']
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
   db:
     image: postgres:18
     environment:
