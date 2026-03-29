@@ -12,9 +12,7 @@ const { variante = 'primaire', href, inline = false, ...restProps } = Astro.prop
 
 <a
   {href}
-  target={href?.toString()?.startsWith('/') || href?.toString()?.startsWith('')
-    ? '_self'
-    : '_blank'}
+  target={href?.toString()?.startsWith('/') ? '_self' : '_blank'}
   rel="noreferrer noopener"
   class={restProps.class}
   data-variante={variante}
@@ -31,7 +29,7 @@ const { variante = 'primaire', href, inline = false, ...restProps } = Astro.prop
     align-items: center;
     gap: 1rem;
 
-    padding: 1rem 1.25rem;
+    padding: 1rem 1.5rem;
     border-radius: 99px;
     min-height: 60px;
     width: 100%;
@@ -41,6 +39,8 @@ const { variante = 'primaire', href, inline = false, ...restProps } = Astro.prop
     font-size: clamp(1.125rem, 5vw, 1.25rem);
     font-weight: 700;
     font-variation-settings: 'wdth' 85;
+
+    user-select: none;
 
     &[data-inline='true'] {
       display: inline-flex;
