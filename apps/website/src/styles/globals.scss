@@ -1,23 +1,4 @@
-@font-face {
-  font-family: 'Instrument Sans';
-  src: url('/assets/fonts/InstrumentSans-Variable.ttf') format('truetype');
-  font-weight: 400 900;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Space Grotesk';
-  src: url('/assets/fonts/SpaceGrotesk-Variable.ttf') format('truetype');
-  font-weight: 500 900;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'National Park';
-  src: url('/assets/fonts/NationalPark-Variable.ttf') format('truetype');
-  font-weight: 500 900;
-  font-display: swap;
-}
+@import url('typography.scss');
 
 :root {
   --rouge-pns: #ff1b4c;
@@ -34,26 +15,39 @@
 }
 
 *,
-::after,
-::before {
+*::before,
+*::after {
   box-sizing: border-box;
-  margin: 0;
+  background-repeat: no-repeat;
+}
+
+* {
   padding: 0;
+  margin: 0;
 }
 
 html {
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  block-size: 100%;
   color-scheme: light dark;
+}
 
-  &[data-theme='dark'] {
-    color-scheme: dark;
-  }
+body {
+  min-block-size: 100%;
 }
 
 img,
-svg,
-video {
+iframe,
+audio,
+video,
+canvas,
+svg {
   display: block;
-  max-width: 100%;
+  max-inline-size: 100%;
+  block-size: auto;
   height: auto;
 }
 
@@ -61,6 +55,50 @@ svg {
   flex-shrink: 0;
 }
 
-a {
+svg:not([fill]) {
+  fill: currentColor;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+fieldset,
+iframe {
+  border: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+abbr {
+  font-variant-caps: all-small-caps;
   text-decoration: none;
+
+  &[title] {
+    cursor: help;
+    text-decoration: underline dotted;
+  }
+}
+
+sup,
+sub {
+  line-height: 0;
+}
+
+:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+:focus-visible {
+  outline-offset: 0.2rem;
 }

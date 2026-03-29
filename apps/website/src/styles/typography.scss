@@ -1,0 +1,138 @@
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('/assets/fonts/InstrumentSans-Variable.ttf') format('truetype');
+  font-weight: 400 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/assets/fonts/SpaceGrotesk-Variable.ttf') format('truetype');
+  font-weight: 500 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'National Park';
+  src: url('/assets/fonts/NationalPark-Variable.ttf') format('truetype');
+  font-weight: 500 900;
+  font-display: swap;
+}
+
+:root {
+  --type-small-text: clamp(0.91rem, -0.11vi + 0.94rem, 0.85rem);
+  --type-paragraph: clamp(1rem, 0.11vi + 0.97rem, 1.06rem);
+  --type-sub-title: clamp(1.1rem, 0.41vi + 1rem, 1.33rem);
+  --type-title-4: clamp(1.21rem, 0.82vi + 1.01rem, 1.66rem);
+  --type-title-3: clamp(1.33rem, 1.35vi + 0.99rem, 2.08rem);
+  --type-title-2: clamp(1.46rem, 2.05vi + 0.95rem, 2.59rem);
+  --type-title-1: clamp(1.61rem, 2.97vi + 0.87rem, 3.24rem);
+  --type-header: clamp(1.77rem, 4.15vi + 0.73rem, 4.05rem);
+}
+
+.header {
+  font-size: var(--type-header);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  text-transform: uppercase;
+  font-variation-settings: 'wdth' 75;
+}
+
+h1,
+.title-1 {
+  font-size: var(--type-title-1);
+  font-weight: 600;
+  line-height: 110%;
+  font-variation-settings: 'wdth' 75;
+}
+
+h2,
+.title-2 {
+  font-size: var(--type-title-2);
+  font-weight: 600;
+  line-height: 110%;
+  font-variation-settings: 'wdth' 80;
+}
+
+h3,
+.title-3 {
+  font-size: var(--type-title-3);
+  font-weight: 500;
+  line-height: 110%;
+  font-variation-settings: 'wdth' 85;
+}
+
+h4,
+.title-4 {
+  font-size: var(--type-title-4);
+  font-weight: 500;
+  line-height: 125%;
+  font-variation-settings: 'wdth' 90;
+}
+
+p,
+.paragraph {
+  font-size: var(--type-paragraph);
+  font-weight: 400;
+  line-height: 140%;
+  font-variation-settings: 'wdth' 100;
+  text-wrap: pretty;
+  font-variant-numeric: proportional-nums;
+}
+
+.sub-title {
+  font-size: var(--type-sub-title);
+  font-weight: 600;
+  line-height: 160%;
+  font-variation-settings: 'wdth' 85;
+}
+
+small,
+.small-text {
+  font-size: var(--type-small-text);
+  font-weight: 600;
+  line-height: 160%;
+  font-variation-settings: 'wdth' 100;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-variant-numeric: lining-nums;
+}
+
+p,
+blockquote,
+q,
+figcaption,
+li {
+  hanging-punctuation: first allow-end last;
+}
+
+math,
+time,
+table {
+  font-variant-numeric: tabular-nums lining-nums slashed-zero;
+}
+
+code {
+  font-variant-numeric: slashed-zero;
+}
+
+a {
+  text-decoration: none;
+}
