@@ -1,0 +1,175 @@
+---
+import Button from '@/components/Button.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contribuer | PNS"
+  description="Envie d'aider notre association Smash Bros. toulousaine dans son ascension fulgurante ? Deviens adhérent, bénévole ou membre !"
+>
+  <main>
+    <section id="header">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="72"
+        height="72"
+        fill="var(--rouge-pns)"
+        ><path
+          d="M12.001 4.52853C14.35 2.42 17.98 2.49 20.2426 4.75736C22.5053 7.02472 22.583 10.637 20.4786 12.993L11.9999 21.485L3.52138 12.993C1.41705 10.637 1.49571 7.01901 3.75736 4.75736C6.02157 2.49315 9.64519 2.41687 12.001 4.52853Z"
+        ></path>
+      </svg>
+
+      <h1 class="header">Soutenir PNS</h1>
+
+      <p>
+        Envie d'aider notre association Smash Bros. toulousaine dans son ascension fulgurante ?
+        Voici comment tu peux contribuer à notre projet :
+      </p>
+    </section>
+
+    <h2>Adhérer à PNS</h2>
+
+    <p>
+      Pour tous les superfans de PNS : accès anticipé à nos actus, réductions partout et plus encore
+      !
+    </p>
+
+    <ul>
+      <li>Réductions sur les frais d'inscription à nos événements</li>
+      <li>Réduction de 0,50€ à toute inscription aux BloomBagarre, notre hebdo expérimentale</li>
+      <li>Réduction d'1 € à toute inscription aux KanD.I., nos mensuels try-hard</li>
+      <li>Réductions à nos buvettes</li>
+      <li>Accès anticipé à nos actus et nouvelles sorties</li>
+      <li>Accès à un salon Discord privé</li>
+      <li>Votre nom dans les crédits de nos diffusions en direct</li>
+      <li>Des bonus infréquents (des produits dérivés, des tournois privés...)</li>
+    </ul>
+
+    <Button href="https://go.pns.gg/adhesion"> J'adhère via Ko-Fi (2€ / mois) </Button>
+
+    <h2>Devenir bénévole</h2>
+
+    <p>
+      Tu sais déplacer des tables et des chaises, rapporter les scores, commenter des matchs ou
+      encore retourner des crêpes ? Deviens bénévole PNS pendant nos tournois : c'est peu
+      contraignant et très valorisant !<br /><br />
+      <i>
+        NB : les personnes mineures souhaitant s'investir dans le bénévolat devront joindre au
+        formulaire une autorisation signée par un responsable légal.
+      </i>
+    </p>
+
+    <Button href="https://go.pns.gg/benevolat">Formulaire de bénévolat PNS</Button>
+
+    <h2>Devenir membre du conseil d'administration</h2>
+
+    <p>
+      Tu es pro-actif, tu sais prendre des décisions, et tu veux t'impliquer à 100% auprès d'une
+      équipe motivée ? Deviens membre de l'association et engage-toi pour travailler sur tous les
+      fronts de l'organisation événementielle à nos côtés !<br /><br />
+      <i>
+        NB : seules les personnes majeures peuvent prétendre à rejoindre PNS en tant que membre.
+      </i>
+    </p>
+
+    <Button href="https://go.pns.gg/devenir-membre">Formulaire d'inscription au CA de PNS</Button>
+
+    <h2>Comparaison des moyens de contribution</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Adhésion</th>
+          <th>Bénévolat</th>
+          <th>Membre du CA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Prix</td>
+          <td>2€ par mois</td>
+          <td>Gratuit</td>
+          <td>Gratuit</td>
+        </tr>
+        <tr>
+          <td>Engagement requis</td>
+          <td>Faible (uniquement financier)</td>
+          <td>Moyen (participation ponctuelle aux événements)</td>
+          <td>Élevé (implication régulière dans la gestion de l'association)</td>
+        </tr>
+        <tr>
+          <td>Avantages</td>
+          <td>Accès à des contenus exclusifs, réductions sur les événements</td>
+          <td>Expérience pratique dans l'organisation d'événements, opportunités de réseautage</td>
+          <td>
+            Influence directe sur les décisions de l'association, développement de compétences en
+            gestion
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+</BaseLayout>
+
+<style lang="scss">
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    margin-top: 1rem;
+    max-width: 950px;
+    width: 100%;
+    padding: 1rem;
+
+    background-color: var(--couleur-section);
+    color: var(--couleur-texte);
+
+    border-radius: 1.5rem;
+
+    h2 {
+      margin-top: 3rem;
+    }
+
+    p {
+      max-width: 70ch;
+    }
+
+    ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+    }
+
+    #header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      text-align: center;
+      max-width: 50%;
+      align-self: center;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 1rem;
+
+      thead {
+        background-color: var(--rouge-pns);
+        color: var(--couleur-section);
+      }
+
+      td:first-child {
+        font-weight: 700;
+      }
+
+      th,
+      td {
+        border: 1px solid var(--couleur-texte);
+        padding: 0.75rem;
+      }
+    }
+  }
+</style>
