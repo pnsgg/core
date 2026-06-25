@@ -27,5 +27,5 @@ export const eventsModule = new Elysia({ prefix: '/events' })
     {
       // params: UuidParamsObject,
       body: EventsModel.modifyEventsBody,
-    },
+    }
   );
